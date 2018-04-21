@@ -1,10 +1,17 @@
 import pygame
 import random
+import numpy as np
 
 pygame.init()
 
 display_width = 800
 display_height = 600
+
+board_width = 210
+board_height = 160
+
+## For testing purposes
+np.set_printoptions(threshold='nan', linewidth='nan')
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Amidar')
@@ -14,6 +21,41 @@ item_width = 10
 
 itemImg = pygame.image.load('item.png')
 opponentImg = pygame.image.load('opponent.png')
+
+class Board():
+
+    def __init__(self, board=None):
+        if board is None:
+            self.board = self.create_board()
+        else:
+            self.board = board
+
+    def create_board(self):
+        self.board = [[0 for x in range(board_width)] for y in range(board_height)]
+
+        ##  Rows
+        for i in range(board_width):
+            self.board[0][i] = 1
+            self.board[31][i] = 1
+            self.board[63][i] = 1
+            self.board[95][i] = 1
+            self.board[127][i] = 1
+            self.board[board_height-1][i] = 1
+
+        ## Outside border
+        for i in range(board_height):
+            self.board[i][0] = 1
+            self.board[i][board_width-1] = 1
+
+        ## First row columns
+        first_col = [40, 60, 90, 105, 135, 170]
+        for i in range(0, 32):
+            for j in first_col:
+                self.board[i][j] = 1
+        
+
+        print(np.matrix(self.board))
+        
 
 def opponents(opponentx, opponenty, opponentw, opponenth):
 	gameDisplay.blit(opponentImg, (opponentx, opponenty))
@@ -90,7 +132,7 @@ def game_loop():
 
 		pygame.display.update()
 		clock.tick(60)
-
+Board()
 game_loop()
 pygame.quit()
 quit()
