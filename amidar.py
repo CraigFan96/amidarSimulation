@@ -48,11 +48,30 @@ class Board():
             self.board[i][board_width-1] = 1
 
         ## First row columns
-        first_col = [40, 60, 90, 105, 135, 170]
+        first_row = [50, 65, 90, 110, 145, 160]
         for i in range(0, 32):
-            for j in first_col:
+            for j in first_row:
                 self.board[i][j] = 1
-        
+
+        second_row = [35, 60, 75, 120, 135, 175]
+        for i in range(32, 64):
+            for j in second_row:
+                self.board[i][j] = 1
+
+        third_row = [30, 80, 130, 180] 
+        for i in range(64, 96):
+            for j in third_row:
+                self.board[i][j] = 1
+
+        fourth_row = [40, 105, 115, 170]
+        for i in range(96, 128):
+            for j in fourth_row:
+                self.board[i][j] = 1
+
+        fifth_row = [41, 83, 125, 167]
+        for i in range(128, 160):
+            for j in fifth_row:
+                self.board[i][j] = 1
 
         print(np.matrix(self.board))
         
