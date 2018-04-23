@@ -5,8 +5,8 @@ import abc
 
 pygame.init()
 
-display_width = 800
-display_height = 600
+display_width = 300
+display_height = 200
 
 board_width = 210
 board_height = 160
@@ -20,8 +20,10 @@ clock = pygame.time.Clock()
 
 item_width = 10
 
-itemImg = pygame.image.load('item.png')
-opponentImg = pygame.image.load('opponent.png')
+itemImg = pygame.image.load('agent.png')
+opponentImg = pygame.image.load('enemy.png')
+unfillHorizontal = pygame.image.load('unfillHorizontal.png')
+unfillVertical = pygame.image.load('unfillVertical.png')
 
 
 class Actor():
@@ -183,7 +185,9 @@ class Path():
         self.contains = None
 
     def draw(self):
-        pygame.draw.rect(gameDisplay, (0,0,255), (self.x, self.y, 10, 10))
+        #pygame.draw.rect(gameDisplay, (0,0,255), (self.x, self.y, 10, 10))
+        gameDisplay.blit(unfillHorizontal, (self.x, self.y))
+
 
 
 def opponents(opponentx, opponenty, opponentw, opponenth):
